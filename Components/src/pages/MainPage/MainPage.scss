@@ -1,7 +1,8 @@
 .main {
-  padding: 20px 20px 0 20px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  padding: 50px 50px 0 50px;
   min-height: calc(100vh - 91px);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(420px, max-content));
+  justify-content: center;
+  gap: 20px;
 }

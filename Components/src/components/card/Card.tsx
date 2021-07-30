@@ -16,7 +16,7 @@ export function Card(props: IProps): JSX.Element {
       <div className="card__image" style={{ backgroundImage: `url(./${props.image})` }}></div>
       <div className="card__content">
         <div className="content__first-column">
-          <p className="content__text">{props.site}</p>
+          <p className="content__text content__text_bold">{props.site}</p>
         </div>
         <div className="content__second-column">
           <p className="content__text">{`From ${props.contry}`}</p>
@@ -25,7 +25,9 @@ export function Card(props: IProps): JSX.Element {
       </div>
       <div className="card__footer">
         <img className="footer__author-image" src={`./${props.authorImage}`} />
-        <p className="content__text">{`BY ${props.author}`}</p>
+        <p className="content__text">
+          BY <span className="content__text_bold">{props.author}</span>
+        </p>
       </div>
     </div>
   );
