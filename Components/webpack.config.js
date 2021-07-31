@@ -21,7 +21,7 @@ const devServer = (isDev) =>
 
 module.exports = ({ development }) => ({
   mode: development ? "development" : "production",
-  devtool: development ? "inline-source-map" : false,
+  devtool:"inline-source-map",
 
   entry: "./src/index.tsx",
   output: {

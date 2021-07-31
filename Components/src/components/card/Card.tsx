@@ -1,5 +1,5 @@
-import "./Card.scss";
-import React from "react";
+import './Card.scss';
+import React from 'react';
 
 interface IProps {
   image: string;
