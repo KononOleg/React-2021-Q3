@@ -1,0 +1,60 @@
+@import "../../styles.scss";
+.form {
+  box-sizing: border-box;
+  padding: 20px 50px;
+  width: 400px;
+  height: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  margin-top: 30px;
+  justify-content: space-between;
+  background-color: $white;
+  border-radius: 3%;
+  font-family: $Roboto;
+  font-size: 14px;
+}
+.input {
+  width: 250px;
+  height: 30px;
+  outline: none;
+  border: none;
+  border: 1px solid $black;
+  border-radius: 7px;
+  font-size: 16px;
+}
+.button_submit {
+  height: 40px;
+  width: 100%;
+  border: 0;
+  padding: 0;
+  border-radius: 7px;
+  background: linear-gradient(135deg, $red, $blue);
+  color: $white;
+  font-size: 18px;
+  cursor: pointer;
+}
+.label {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.switch__text {
+  margin: 0;
+  font-size: 18px;
+}
+.switch__wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.input_date::before {
+  content: attr(data-placeholder);
+  width: 100%;
+}
+
+.input_date:focus::before,
+.input_date:valid::before {
+  display: none;
+}
