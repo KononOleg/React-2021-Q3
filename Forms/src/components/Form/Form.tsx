@@ -4,7 +4,11 @@ import { Switch } from '../Switch/Switch.tsx';
 
 const SELECT_DEFAULT = 'DEFAULT';
 
-export function Form(): JSX.Element {
+interface IProps {
+  addCard: (name: string, date: string, country: string, isHungry: boolean) => void;
+}
+
+export function Form(props: IProps): JSX.Element {
   const [textInput, setTextInput] = useState('');
   const [dateInput, setDateInput] = useState('');
   const [selectInput, setSelectInput] = useState(SELECT_DEFAULT);
@@ -46,10 +50,23 @@ export function Form(): JSX.Element {
   };
   const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!textInput) setTextInputError('Name cannot be blank');
-    if (selectInput === SELECT_DEFAULT) setSelectInputError('Country cannot be blank');
-    if (!dateInput) setDateInputError('Date cannot be blank');
-    if (!textInputError && !dateInputError && !selectInputError && checkboxInput) {
+
+    let isError = false;
+    if (!textInput) {
+      setTextInputError('Name cannot be blank');
+      isError = true;
+    }
+    if (selectInput === SELECT_DEFAULT) {
+      setSelectInputError('Country cannot be blank');
+      isError = true;
+    }
+    if (!dateInput) {
+      setDateInputError('Date cannot be blank');
+      isError = true;
+    }
+
+    if (!isError) {
+      props.addCard(textInput, dateInput, selectInput, switchInput);
       setTextInput('');
       setDateInput('');
       setSelectInput(SELECT_DEFAULT);
@@ -97,9 +114,9 @@ export function Form(): JSX.Element {
       </div>
 
       <label className="label">
-        <input type="checkbox" onChange={checkboxInputHandler} checked={checkboxInput} />I agree with chipping
+        <input type="checkbox" onChange={checkboxInputHandler} checked={checkboxInput} style={{ cursor: 'pointer' }} />I agree with chipping
       </label>
-      <button type="submit" className="button_submit" disabled={!!isFormValid}>
+      <button type="submit" className="button_submit" disabled={isFormValid}>
         Submit
       </button>
     </form>

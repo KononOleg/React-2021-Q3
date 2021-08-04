@@ -1,5 +1,12 @@
 .main {
-  min-height: 100vh;
-  display: flex;
+  min-height: calc(100vh - 70px);
+  padding: 0 50px;
+}
+
+.cards__wrapper {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, max-content));
+  gap: 20px;
   justify-content: center;
 }
