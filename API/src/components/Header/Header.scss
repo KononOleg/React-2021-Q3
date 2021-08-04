@@ -1,0 +1,151 @@
+@import "../../styles.scss";
+
+.header {
+  height: 70px;
+  display: flex;
+  border-bottom: 1px solid $grey;
+}
+
+.box_left {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  padding: 0 23px;
+  cursor: pointer;
+  border-right: 1px solid $grey;
+}
+.box_left:hover {
+  .burger__text {
+    color: $transparent_black;
+  }
+  .burger__span,
+  .burger__span::after,
+  .burger__span::before {
+    background-color: $transparent_black;
+  }
+}
+
+.burger__button {
+  position: relative;
+  height: 15px;
+  width: 15px;
+}
+.burger__text {
+  font-family: $Roboto;
+  font-size: 13px;
+  font-weight: 400;
+  transition: all 0.3s ease-out;
+}
+
+.burger__span,
+.burger__span::before,
+.burger__span::after {
+  width: 15px;
+  height: 2px;
+  background-color: $black;
+  z-index: 20;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transition: all 0.3s;
+}
+.burger__span::before {
+  content: "";
+  top: -4px;
+}
+.burger__span::after {
+  content: "";
+  top: 4px;
+}
+.burger__span_active {
+  background-color: transparent;
+}
+.burger__span_active::before {
+  top: 0;
+  transform: rotate(45deg);
+}
+.burger__span_active::after {
+  top: 0;
+  transform: rotate(-45deg);
+}
+
+.box_right {
+  display: flex;
+  flex: 1;
+}
+.header__input {
+  display: flex;
+  flex: 1;
+  height: 100%;
+  padding: 0 20px;
+  border: 0;
+  background-color: transparent;
+  font-size: 13px;
+  outline: none;
+}
+.header__filters {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-right: 20px;
+}
+.header__button_close {
+  width: 66px;
+  height: 70px;
+  background-color: $black;
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  position: relative;
+}
+.header__button_close:hover {
+  opacity: 0.75;
+}
+
+.header__button_close::after,
+.header__button_close::before {
+  content: "";
+  position: absolute;
+  top: 33px;
+  right: 22px;
+  width: 20px;
+  height: 3px;
+  background: $white;
+}
+.header__button_close::after {
+  transform: rotate(45deg);
+}
+
+.header__button_close::before {
+  transform: rotate(-45deg);
+}
+.filters__text {
+  font-family: $Roboto;
+  font-size: 15px;
+  font-weight: 500;
+  color: $transparent_black;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-decoration: underline;
+  transition: 0.1s ease-in-out;
+}
+.filters__text:hover {
+  text-decoration-color: $black;
+}
+
+@media (max-width: 800px) {
+  .header__button_close {
+    background-color: transparent;
+  }
+  .header__button_close::after,
+  .header__button_close::before {
+    background: $black;
+  }
+  .header__filters {
+    display: none;
+  }
+  .box_left {
+    display: none;
+  }
+}
