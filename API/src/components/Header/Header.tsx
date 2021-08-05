@@ -2,7 +2,7 @@ import './Header.scss';
 import React from 'react';
 
 interface IProps {
-  updateArticles: (q: string) => void;
+  updateArticles: (inputValue: string) => void;
 }
 
 export function Header(props: IProps): JSX.Element {
