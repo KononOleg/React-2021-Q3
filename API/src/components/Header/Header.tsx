@@ -1,7 +1,14 @@
 import './Header.scss';
 import React from 'react';
 
-export function Header(): JSX.Element {
+interface IProps {
+  updateArticles: (q: string) => void;
+}
+
+export function Header(props: IProps): JSX.Element {
+  const onChangeHandler = (e: React.FormEvent<HTMLInputElement>) => {
+    props.updateArticles(e.currentTarget.value);
+  };
   return (
     <header className="header">
       <div className="box_left">
@@ -11,7 +18,7 @@ export function Header(): JSX.Element {
         <p className="burger__text">MENU</p>
       </div>
       <div className="box_right">
-        <input type="text" className="header__input" placeholder="SEARCH FOR INSPIRATION (MEANING OF LIFE, PIZZA, ANIME, SABATON...)" />
+        <input type="text" className="header__input" placeholder="SEARCH FOR INSPIRATION (MEANING OF LIFE, PIZZA, ANIME, SABATON...)" onChange={onChangeHandler} />
         <div className="header__filters">
           <p className="filters__text">show filters</p>
         </div>

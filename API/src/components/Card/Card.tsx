@@ -1,14 +1,8 @@
 import './Card.scss';
 import React from 'react';
+import { ICard } from '../../shared/interfaces/ICard';
 
-interface IProps {
-  image: string;
-  name: string;
-  date: string;
-  author: string;
-}
-
-export function Card(props: IProps): JSX.Element {
+export function Card(props: ICard): JSX.Element {
   return (
     <div className="card__wrapper">
       <div className="card__image" style={{ backgroundImage: `url(${props.image})` }}></div>
