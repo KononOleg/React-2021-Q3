@@ -1,9 +1,9 @@
-import './MainPage.scss';
-import React, { useState } from 'react';
-import { Form } from '../../components/Form/Form.tsx';
-import { Card } from '../../components/Card/Card.tsx';
-import { Message } from '../../components/Message/Message.tsx';
-import { delay } from '../../shared/delay';
+import "./MainPage.scss";
+import React, { useState } from "react";
+import { Form } from "../../components/Form/Form.tsx";
+import { Card } from "../../components/Card/Card.tsx";
+import { Message } from "../../components/Message/Message.tsx";
+import { delay } from "../../shared/delay";
 
 const MESSAGE_DELAY = 5;
 

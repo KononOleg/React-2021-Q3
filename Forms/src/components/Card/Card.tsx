@@ -1,6 +1,6 @@
-import './Card.scss';
-import React from 'react';
-import { ICard } from '../../shared/interfaces/ICard';
+import "./Card.scss";
+import React from "react";
+import { ICard } from "../../shared/interfaces/ICard";
 
 export function Card(props: ICard): JSX.Element {
   return (
@@ -16,7 +16,7 @@ export function Card(props: ICard): JSX.Element {
           Country: <span className="card__text">{props.country}</span>
         </p>
         <p className="card__title">
-          Is this man hungry?: <span className="card__text">{props.isHungry ? 'yep' : 'no'}</span>
+          Is this man hungry?: <span className="card__text">{props.isHungry ? "yep" : "no"}</span>
         </p>
       </div>
     </>

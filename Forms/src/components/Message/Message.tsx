@@ -1,5 +1,5 @@
-import './Message.scss';
-import React from 'react';
+import "./Message.scss";
+import React from "react";
 
 export function Message(): JSX.Element {
   return (
