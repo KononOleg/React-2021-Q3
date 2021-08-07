@@ -1,6 +1,5 @@
 .articles__wrapper {
   padding: 50px;
-  min-height: calc(100vh - 121px);
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(420px, max-content));
   justify-content: center;

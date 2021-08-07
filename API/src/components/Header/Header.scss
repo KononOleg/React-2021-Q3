@@ -1,11 +1,9 @@
 @import "../../styles.scss";
-
-.header {
+.box {
   height: 70px;
   display: flex;
   border-bottom: 1px solid $grey;
 }
-
 .box_left {
   display: flex;
   gap: 10px;
@@ -148,4 +146,31 @@
   .box_left {
     display: none;
   }
+}
+.radio__input {
+  display: none;
+}
+.lower-box__item {
+  width: 70px;
+
+  padding: 0px 15px;
+  font-size: 12px;
+  border-right: 1px solid $grey;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.3s;
+  text-transform: uppercase;
+}
+.item__text {
+  font-weight: 700;
+}
+.radio__item {
+  cursor: pointer;
+}
+.radio__item:hover {
+  background-color: $white;
+}
+.radio__input:checked + .lower-box__item {
+  background-color: $white;
 }
