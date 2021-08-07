@@ -152,15 +152,14 @@
 }
 .lower-box__item {
   width: 70px;
-
+  text-transform: uppercase;
   padding: 0px 15px;
-  font-size: 12px;
+  font-size: 14px;
   border-right: 1px solid $grey;
   display: flex;
   justify-content: center;
   align-items: center;
   transition: 0.3s;
-  text-transform: uppercase;
 }
 .item__text {
   font-weight: 700;
@@ -173,4 +172,13 @@
 }
 .radio__input:checked + .lower-box__item {
   background-color: $white;
+}
+.page_input {
+  width: 40px;
+  padding: 0;
+  text-align: right;
+}
+.page_input::-webkit-inner-spin-button,
+.page_input::-webkit-outer-spin-button {
+  opacity: 1;
 }

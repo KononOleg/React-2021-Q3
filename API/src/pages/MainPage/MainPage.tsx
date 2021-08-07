@@ -6,37 +6,32 @@ import { ICard } from '../../shared/interfaces/ICard';
 import { Articles } from '../../components/Articles/Articles.tsx';
 import { LoadScreen } from '../../components/LoadScreen/LoadScreen.tsx';
 
-const PAGE_SIZE = 10;
-
 export function MainPage(): JSX.Element {
-  const [articles, setArticles] = useState([] as ICard[]);
+  const [cards, setCards] = useState([] as ICard[]);
 
   const [pending, setPending] = useState(false);
 
   const [q, setQ] = useState('Sabaton');
-  const [page, setPage] = useState(1);
-  const [sortBy, seSortBy] = useState('publishedAt');
+  const [sortBy, setSortBy] = useState('publishedAt');
+  const [pageCount, setPageCount] = useState(0);
 
-  const fetchData = async (): Promise<void> => {
+  const fetchData = async (page: number, pageSize: number): Promise<void> => {
     setPending(true);
-    setArticles(await getArticles(q, page, PAGE_SIZE, sortBy));
+    const { articles, count } = await getArticles(q, page, pageSize, sortBy);
+    setCards(articles);
     setPending(false);
+    setPageCount(Math.ceil(count / pageSize));
   };
-  useEffect(() => {
-    setPage(1);
-    fetchData();
-  }, [q, sortBy]);
+  useEffect(() => {}, []);
 
-  useEffect(() => {
-    fetchData();
-  }, [page]);
-
-  const updateSortBy = (inputValue: string) => {
-    seSortBy(inputValue);
+  const updateSortBy = (inputValue: string, pageValue: number, pageSizeValue: number) => {
+    setSortBy(inputValue);
+    fetchData(pageValue, pageSizeValue);
   };
 
-  const updateArticles = async (inputValue: string) => {
+  const updateArticles = async (inputValue: string, pageValue: number, pageSizeValue: number) => {
     setQ(inputValue);
+    fetchData(pageValue, pageSizeValue);
   };
   return (
     <>
@@ -46,11 +41,7 @@ export function MainPage(): JSX.Element {
           <LoadScreen />
         ) : (
           <>
-            <Articles articles={articles} />
-            {/*             <div>
-              <button onClick={() => setPage(page - 1)}>prev</button>
-              <button onClick={() => setPage(page + 1)}>next</button>
-            </div> */}
+            <Articles articles={cards} pageCount={pageCount} />
           </>
         )}
       </main>

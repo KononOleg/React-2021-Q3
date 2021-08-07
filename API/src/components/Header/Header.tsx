@@ -1,18 +1,28 @@
 import './Header.scss';
-import React from 'react';
+import React, { useState } from 'react';
 
 interface IProps {
-  updateArticles: (inputValue: string) => void;
-  updateSortBy: (inputValue: string) => void;
+  updateArticles: (inputValue: string, pageValue: number, pageSizeValue: number) => void;
+  updateSortBy: (inputValue: string, pageValue: number, pageSizeValue: number) => void;
 }
 
 export function Header(props: IProps): JSX.Element {
-  const onChangeHandler = (e: React.FormEvent<HTMLInputElement>) => {
-    props.updateArticles(e.currentTarget.value);
+  const [page, setPage] = useState(1);
+  const [articleCount, setArticleCount] = useState(12);
+
+  const onChangeHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') props.updateArticles(e.currentTarget.value, page, articleCount);
+  };
+
+  const pageOnChange = (e: React.FormEvent<HTMLInputElement>) => {
+    setPage(e.currentTarget.value as unknown as number);
+  };
+  const articleCountOnChange = (e: React.FormEvent<HTMLInputElement>) => {
+    setArticleCount(e.currentTarget.value as unknown as number);
   };
 
   const radioChange = (e: React.FormEvent<HTMLInputElement>) => {
-    props.updateSortBy(e.currentTarget.value);
+    props.updateSortBy(e.currentTarget.value, page, articleCount);
   };
   return (
     <header className="header">
@@ -24,7 +34,7 @@ export function Header(props: IProps): JSX.Element {
           <p className="burger__text">MENU</p>
         </div>
         <div className="box_right">
-          <input type="text" className="header__input" placeholder="SEARCH FOR INSPIRATION (MEANING OF LIFE, PIZZA, ANIME, SABATON...)" onChange={onChangeHandler} />
+          <input type="text" className="header__input" placeholder="SEARCH FOR INSPIRATION (MEANING OF LIFE, PIZZA, ANIME, SABATON...)" onKeyDown={onChangeHandler} />
           <div className="header__filters">
             <p className="filters__text">show filters</p>
           </div>
@@ -47,6 +57,14 @@ export function Header(props: IProps): JSX.Element {
         <label className="lower-box__item radio__item" htmlFor="radio-3">
           Name
         </label>
+        <div className="lower-box__item">
+          <p>page:</p>
+          <input type="number" className="header__input page_input" defaultValue={page} onChange={pageOnChange} />
+        </div>
+        <div className="lower-box__item">
+          <p>items:</p>
+          <input type="number" className="header__input page_input" defaultValue={articleCount} onChange={articleCountOnChange} />
+        </div>
       </div>
     </header>
   );
