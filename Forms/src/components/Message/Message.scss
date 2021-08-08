@@ -1,0 +1,36 @@
+@import "../../styles.scss";
+
+.message__wrapper {
+  position: absolute;
+  left: 50%;
+  width: 230px;
+  height: 30px;
+  background-color: $white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 7px;
+  transform: translate(-50%, -50%);
+  animation-name: transform;
+  animation-duration: 5.1s;
+}
+.message__text {
+  font-family: $Roboto;
+}
+
+@keyframes transform {
+  from {
+    top: -30px;
+  }
+  10% {
+    top: 30px;
+  }
+  90% {
+    top: 30px;
+  }
+
+  to {
+    top: -30px;
+  }
+}
