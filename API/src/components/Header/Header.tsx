@@ -3,12 +3,14 @@ import React, { useState } from 'react';
 
 interface IProps {
   updateArticles: (inputValue: string, pageValue: number, pageSizeValue: number) => void;
-  updateSortBy: (inputValue: string, pageValue: number, pageSizeValue: number) => void;
+  updateSortBy: (inputValue: string) => void;
+  page: number;
+  pageSize: number;
 }
 
 export function Header(props: IProps): JSX.Element {
-  const [page, setPage] = useState(1);
-  const [articleCount, setArticleCount] = useState(12);
+  const [page, setPage] = useState(props.page);
+  const [articleCount, setArticleCount] = useState(props.pageSize);
 
   const onChangeHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') props.updateArticles(e.currentTarget.value, page, articleCount);
@@ -22,7 +24,7 @@ export function Header(props: IProps): JSX.Element {
   };
 
   const radioChange = (e: React.FormEvent<HTMLInputElement>) => {
-    props.updateSortBy(e.currentTarget.value, page, articleCount);
+    props.updateSortBy(e.currentTarget.value);
   };
   return (
     <header className="header">
@@ -53,9 +55,9 @@ export function Header(props: IProps): JSX.Element {
         <label className="lower-box__item radio__item" htmlFor="radio-2">
           Author
         </label>
-        <input type="radio" className="radio__input" name="sort" id="radio-3" value="name" onChange={radioChange} />
+        <input type="radio" className="radio__input" name="sort" id="radio-3" value="popularity" onChange={radioChange} />
         <label className="lower-box__item radio__item" htmlFor="radio-3">
-          Name
+          popularity
         </label>
         <div className="lower-box__item">
           <p>page:</p>

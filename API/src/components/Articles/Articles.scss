@@ -1,7 +1,15 @@
+@import "../../styles.scss";
 .articles__wrapper {
-  padding: 50px;
+  padding: 50px 0;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(420px, max-content));
   justify-content: center;
   gap: 20px;
+}
+.articles__text {
+  font-size: 24px;
+  font-weight: 400;
+  font-family: $Roboto;
+  margin: 0;
+  margin-top: 20px;
 }

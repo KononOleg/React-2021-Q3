@@ -172,6 +172,7 @@
 }
 .radio__input:checked + .lower-box__item {
   background-color: $white;
+  cursor: default;
 }
 .page_input {
   width: 40px;

@@ -5,7 +5,10 @@ import { ICard } from '../../shared/interfaces/ICard';
 export function Card(props: ICard): JSX.Element {
   return (
     <div className="card__wrapper">
-      <div className="card__image" style={{ backgroundImage: `url(${props.image})` }}></div>
+      <div className="card-image__wrapper">
+        <div className="card__image" style={{ backgroundImage: `url(${props.image})` }}></div>
+      </div>
+
       <div className="card__content">
         <div className="content__first-column">
           <p className="content__text content__text_bold">{props.name}</p>
