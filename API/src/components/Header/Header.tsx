@@ -27,7 +27,7 @@ export function Header(props: IProps): JSX.Element {
     props.updateSortBy(e.currentTarget.value);
   };
   return (
-    <header className="header">
+    <div>
       <div className="box">
         <div className="box_left">
           <div className="burger__button">
@@ -68,6 +68,6 @@ export function Header(props: IProps): JSX.Element {
           <input type="number" className="header__input page_input" defaultValue={articleCount} onChange={articleCountOnChange} />
         </div>
       </div>
-    </header>
+    </div>
   );
 }

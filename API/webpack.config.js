@@ -16,6 +16,9 @@ const devServer = (isDev) =>
           open: true,
           port: 8080,
           contentBase: path.join(__dirname, "public"),
+          historyApiFallback: true,
+          contentBase: './',
+          hot: true,
         },
       };
 
