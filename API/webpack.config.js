@@ -18,7 +18,6 @@ const devServer = (isDev) =>
           contentBase: path.join(__dirname, "public"),
           historyApiFallback: true,
           contentBase: './',
-          hot: true,
         },
       };
 
