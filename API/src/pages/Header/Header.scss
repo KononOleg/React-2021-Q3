@@ -2,6 +2,7 @@
 .header {
   height: 70px;
   display: flex;
+  border-bottom: 1px solid $grey;
 }
 .navlink {
   font-family: $Roboto;
@@ -19,5 +20,6 @@
   text-decoration: none;
 }
 .navlink_active {
+  pointer-events: none;
   background-color: $white;
 }

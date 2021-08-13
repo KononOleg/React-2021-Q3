@@ -47,7 +47,7 @@ export function Header(props: IProps): JSX.Element {
         <div className="lower-box__item item__text">
           <p>Sort By </p>
         </div>
-        <input type="radio" className="radio__input" id="radio-1" name="sort" value="publishedAt" onChange={radioChange} />
+        <input type="radio" className="radio__input" id="radio-1" name="sort" value="publishedAt" checked onChange={radioChange} />
         <label className="lower-box__item radio__item" htmlFor="radio-1">
           Date
         </label>
