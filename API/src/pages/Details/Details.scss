@@ -1,0 +1,43 @@
+@import "../../styles.scss";
+.details__image {
+  width: 100%;
+  aspect-ratio: 25/9;
+}
+.details__wrapper {
+  position: relative;
+}
+.details__info {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  color: $white;
+  font-family: $Roboto;
+}
+.box-info {
+  text-align: center;
+}
+.details__url {
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+}
+.info__name {
+  font-size: 40px;
+  font-weight: 800;
+  margin: 90px 0 20px;
+}
+.info__author {
+  font-size: 30px;
+  margin: 0;
+}
+.details__date {
+  font-size: 20px;
+  margin: 50px 60px;
+}
+.details__title {
+  font-family: $Roboto;
+  margin: 40px 300px 0;
+  font-size: 20px;
+  text-align: center;
+}

@@ -15,9 +15,7 @@ const devServer = (isDev) =>
         devServer: {
           open: true,
           port: 8080,
-          contentBase: path.join(__dirname, "public"),
           historyApiFallback: true,
-          contentBase: './',
         },
       };
 
@@ -30,6 +28,7 @@ module.exports = ({ development }) => ({
     path: path.resolve(__dirname, "dist"),
     filename: "index.js",
     assetModuleFilename: "assets/[hash][ext]",
+    publicPath: '/'
   },
   module: {
     rules: [
@@ -57,7 +56,7 @@ module.exports = ({ development }) => ({
     ],
   },
   plugins: [
-    ...esLintPlugin(development),
+     ...esLintPlugin(development), 
     new HtmlWebpackPlugin({
       template: "./src/index.html",
     }),

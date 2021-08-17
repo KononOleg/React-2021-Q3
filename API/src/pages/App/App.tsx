@@ -6,6 +6,7 @@ import { About } from '../About/About.tsx';
 import { Header } from '../Header/Header.tsx';
 import { MainPage } from '../MainPage/MainPage.tsx';
 import { NotFound } from '../NotFound/NotFound.tsx';
+import { Details } from '../Details/Details.tsx';
 
 export function App(): JSX.Element {
   const location = useLocation();
@@ -17,6 +18,9 @@ export function App(): JSX.Element {
           <Switch>
             <Route exact path="/" component={MainPage} />
             <Route path="/about" component={About} />
+            <Route path="/details/:id">
+              <Details />
+            </Route>
             <Route component={NotFound} />
           </Switch>
         </CSSTransition>

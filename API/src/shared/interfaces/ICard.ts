@@ -3,4 +3,6 @@ export interface ICard {
   name: string;
   date: string;
   author: string;
+  title: string;
+  url?: string;
 }
