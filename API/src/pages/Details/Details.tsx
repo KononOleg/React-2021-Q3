@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getArticle } from '../../shared/api';
 import { ICard } from '../../shared/interfaces/ICard';
+import { NoDataScreen } from '../../components/NoDataScreen/NoDataScreen.tsx';
 
 export function Details(): JSX.Element {
   const { id } = useParams<{ id: string }>();
@@ -20,7 +21,7 @@ export function Details(): JSX.Element {
   return (
     <>
       {!article ? (
-        <div></div>
+        <NoDataScreen />
       ) : (
         <div>
           <div className="details__wrapper">
