@@ -7,6 +7,7 @@
     "test": "npx prettier --write ."
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.6.1",
     "@types/react": "^17.0.11",
     "@types/react-dom": "^17.0.8",
     "@types/react-transition-group": "^4.4.2",
@@ -14,6 +15,7 @@
     "build": "^0.1.4",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-redux": "^7.2.4",
     "react-router-dom": "^5.2.0",
     "react-transition-group": "^4.4.2",
     "sass": "^1.34.1",

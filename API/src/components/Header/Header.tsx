@@ -1,30 +1,29 @@
 import './Header.scss';
-import React, { useState } from 'react';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  setPage, setPageSize, setQ, setSortBy,
+} from '../../redux/actions';
+import { IStore } from '../../redux/reducer';
 
-interface IProps {
-  updateArticles: (inputValue: string, pageValue: number, pageSizeValue: number) => void;
-  updateSortBy: (inputValue: string) => void;
-  page: number;
-  pageSize: number;
-}
-
-export function Header(props: IProps): JSX.Element {
-  const [page, setPage] = useState(props.page);
-  const [articleCount, setArticleCount] = useState(props.pageSize);
+export function Header(): JSX.Element {
+  const page = useSelector((state: IStore) => state.page);
+  const pageSize = useSelector((state: IStore) => state.pageSize);
+  const dispatch = useDispatch();
 
   const onChangeHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') props.updateArticles(e.currentTarget.value, page, articleCount);
+    if (e.key === 'Enter') dispatch(setQ(e.currentTarget.value as string));
   };
 
   const pageOnChange = (e: React.FormEvent<HTMLInputElement>) => {
-    setPage(e.currentTarget.value as unknown as number);
+    dispatch(setPage(e.currentTarget.value as unknown as number));
   };
   const articleCountOnChange = (e: React.FormEvent<HTMLInputElement>) => {
-    setArticleCount(e.currentTarget.value as unknown as number);
+    dispatch(setPageSize(e.currentTarget.value as unknown as number));
   };
 
   const radioChange = (e: React.FormEvent<HTMLInputElement>) => {
-    props.updateSortBy(e.currentTarget.value);
+    dispatch(setSortBy(e.currentTarget.value as string));
   };
   return (
     <div>
@@ -47,7 +46,7 @@ export function Header(props: IProps): JSX.Element {
         <div className="lower-box__item item__text">
           <p>Sort By </p>
         </div>
-        <input type="radio" className="radio__input" id="radio-1" name="sort" value="publishedAt" checked onChange={radioChange} />
+        <input type="radio" className="radio__input" id="radio-1" name="sort" value="publishedAt" onChange={radioChange} />
         <label className="lower-box__item radio__item" htmlFor="radio-1">
           Date
         </label>
@@ -65,7 +64,7 @@ export function Header(props: IProps): JSX.Element {
         </div>
         <div className="lower-box__item">
           <p>items:</p>
-          <input type="number" className="header__input page_input" defaultValue={articleCount} onChange={articleCountOnChange} />
+          <input type="number" className="header__input page_input" defaultValue={pageSize} onChange={articleCountOnChange} />
         </div>
       </div>
     </div>

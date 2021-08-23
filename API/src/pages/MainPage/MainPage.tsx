@@ -1,26 +1,23 @@
 import './MainPage.scss';
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Header } from '../../components/header/Header.tsx';
 import { getArticles } from '../../shared/api';
 import { ICard } from '../../shared/interfaces/ICard';
 import { Articles } from '../../components/Articles/Articles.tsx';
 import { LoadScreen } from '../../components/LoadScreen/LoadScreen.tsx';
-
-const PAGE = 1;
-const PAGE_SIZE = 12;
-const Q = 'Sabaton';
-const SORT_BY = 'publishedAt';
+import { IStore } from '../../redux/reducer';
 
 export function MainPage(): JSX.Element {
   const [cards, setCards] = useState([] as ICard[]);
 
   const [pending, setPending] = useState(false);
-
-  const [q, setQ] = useState(Q);
-  const [sortBy, setSortBy] = useState(SORT_BY);
-  const [page, setPage] = useState(PAGE);
-  const [pageSize, setPageSize] = useState(PAGE_SIZE);
   const [pageCount, setPageCount] = useState(0);
+
+  const q = useSelector((state: IStore) => state.q);
+  const page = useSelector((state: IStore) => state.page);
+  const pageSize = useSelector((state: IStore) => state.pageSize);
+  const sortBy = useSelector((state: IStore) => state.sortBy);
 
   const fetchData = async (): Promise<void> => {
     setPending(true);
@@ -33,18 +30,9 @@ export function MainPage(): JSX.Element {
     fetchData();
   }, [q, sortBy, page, pageSize]);
 
-  const updateSortBy = (inputValue: string) => {
-    setSortBy(inputValue);
-  };
-
-  const updateArticles = async (inputValue: string, pageValue: number, pageSizeValue: number) => {
-    setQ(inputValue);
-    setPage(pageValue);
-    setPageSize(pageSizeValue);
-  };
   return (
     <>
-      <Header updateArticles={updateArticles} updateSortBy={updateSortBy} page={page} pageSize={pageSize} />
+      <Header page={page} pageSize={pageSize} />
       <main className="main">
         {pending ? (
           <LoadScreen />
