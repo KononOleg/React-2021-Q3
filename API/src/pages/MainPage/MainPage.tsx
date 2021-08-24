@@ -1,30 +1,24 @@
 import './MainPage.scss';
-import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Header } from '../../components/header/Header.tsx';
-import { getArticles } from '../../shared/api';
-import { ICard } from '../../shared/interfaces/ICard';
 import { Articles } from '../../components/Articles/Articles.tsx';
 import { LoadScreen } from '../../components/LoadScreen/LoadScreen.tsx';
 import { IStore } from '../../redux/reducer';
+import { setArticles } from '../../redux/actions';
 
 export function MainPage(): JSX.Element {
-  const [cards, setCards] = useState([] as ICard[]);
-
-  const [pending, setPending] = useState(false);
-  const [pageCount, setPageCount] = useState(0);
-
+  const dispatch = useDispatch();
+  const articles = useSelector((state: IStore) => state.articles);
   const q = useSelector((state: IStore) => state.q);
   const page = useSelector((state: IStore) => state.page);
   const pageSize = useSelector((state: IStore) => state.pageSize);
   const sortBy = useSelector((state: IStore) => state.sortBy);
+  const pending = useSelector((state: IStore) => state.pending);
+  const pageCount = useSelector((state: IStore) => state.pageCount);
 
   const fetchData = async (): Promise<void> => {
-    setPending(true);
-    const { articles, count } = await getArticles(q, page, pageSize, sortBy);
-    setCards(articles);
-    setPending(false);
-    setPageCount(Math.ceil(count / pageSize));
+    dispatch(setArticles(q, page, pageSize, sortBy));
   };
   useEffect(() => {
     fetchData();
@@ -38,7 +32,7 @@ export function MainPage(): JSX.Element {
           <LoadScreen />
         ) : (
           <>
-            <Articles articles={cards} pageCount={pageCount} />
+            <Articles articles={articles} pageCount={pageCount} />
           </>
         )}
       </main>

@@ -1,17 +1,19 @@
 import './Details.scss';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { getArticle } from '../../shared/api';
-import { ICard } from '../../shared/interfaces/ICard';
+import { useDispatch, useSelector } from 'react-redux';
 import { NoDataScreen } from '../../components/NoDataScreen/NoDataScreen.tsx';
+import { setArticle } from '../../redux/actions';
+import { IStore } from '../../redux/reducer';
 
 export function Details(): JSX.Element {
   const { id } = useParams<{ id: string }>();
+  const article = useSelector((state: IStore) => state.article);
 
-  const [article, setArticle] = useState(null as unknown as ICard);
+  const dispatch = useDispatch();
 
   const fetchData = async (): Promise<void> => {
-    setArticle(await getArticle(id));
+    dispatch(setArticle(id));
   };
 
   useEffect(() => {
