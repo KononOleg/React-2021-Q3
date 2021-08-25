@@ -1,37 +1,32 @@
-export const SET_Q = 'SET_Q';
-export const SET_PAGE = 'SET_PAGE';
-export const SET_PAGE_SIZE = 'SET_PAGE_SIZE';
-export const SET_SORT_BY = 'SET_SORT_BY';
-export const SET_ARTICLES = 'SET_ARTICLES';
-export const SET_ARTICLE = 'SET_ARTICLE';
-export const SET_PENDING = 'SET_PENDING';
-export const SET_PAGE_COUNT = 'SET_PAGE_COUNT';
+import {
+  ActionTypes, ArticleAction, ArticlesAction, PageAction, PageCountAction, PageSizeAction, PendingAction, QAction, SortByAction,
+} from './ActionsInterfaces';
 
-export function setQ(q: string): { type: string; payload: string } {
-  return { type: SET_Q, payload: q };
+export function setQ(q: string): QAction {
+  return { type: ActionTypes.SET_Q, payload: q };
 }
-export function setPage(page: number): { type: string; payload: number } {
-  return { type: SET_PAGE, payload: page };
+export function setPage(page: number): PageAction {
+  return { type: ActionTypes.SET_PAGE, payload: page };
 }
-export function setPageSize(pageSize: number): { type: string; payload: number } {
-  return { type: SET_PAGE_SIZE, payload: pageSize };
+export function setPageSize(pageSize: number): PageSizeAction {
+  return { type: ActionTypes.SET_PAGE_SIZE, payload: pageSize };
 }
 
-export function setSortBy(sortBy: string): { type: string; payload: string } {
-  return { type: SET_SORT_BY, payload: sortBy };
+export function setSortBy(sortBy: string): SortByAction {
+  return { type: ActionTypes.SET_SORT_BY, payload: sortBy };
 }
-export function setPending(pending: boolean): { type: string; payload: boolean } {
-  return { type: SET_PENDING, payload: pending };
+export function setPending(pending: boolean): PendingAction {
+  return { type: ActionTypes.SET_PENDING, payload: pending };
 }
 
-export function setPageCount(pageCount: number): { type: string; payload: number } {
-  return { type: SET_PAGE_COUNT, payload: pageCount };
+export function setPageCount(pageCount: number): PageCountAction {
+  return { type: ActionTypes.SET_PAGE_COUNT, payload: pageCount };
 }
 
 const url = (q: string, page = 1, pageSize = 100, sortBy = ''): string => `https://newsapi.org/v2/everything?q="${q}"&pageSize=${pageSize}&page=${page}&sortBy=${sortBy}&apiKey=f706ea795fd746e0a5854ee006632c03`;
 
 export function setArticles(q: string, page: number, pageSize: number, sortBy: string) {
-  return async (dispatch: (arg0: { type: string; payload: any }) => void): Promise<void> => {
+  return async (dispatch: (arg0: ArticlesAction | PageCountAction | PendingAction) => void): Promise<void> => {
     dispatch(setPending(true));
     const response = await fetch(url(q, page, pageSize, sortBy));
 
@@ -44,15 +39,15 @@ export function setArticles(q: string, page: number, pageSize: number, sortBy: s
         name: article.source.name,
         title: article.title,
       }));
-      dispatch({ type: SET_ARTICLES, payload: articles });
+      dispatch({ type: ActionTypes.SET_ARTICLES, payload: articles });
       dispatch(setPageCount(data.totalResults));
-    } else dispatch({ type: SET_ARTICLES, payload: 0 });
+    } else dispatch({ type: ActionTypes.SET_ARTICLES, payload: [] });
 
     dispatch(setPending(false));
   };
 }
 
-export const setArticle = (q: string) => async (dispatch: (arg0: { type: string; payload: any }) => void): Promise<void> => {
+export const setArticle = (q: string) => async (dispatch: (arg0: ArticleAction) => void): Promise<void> => {
   const response = await fetch(url(q));
   const data = await response.json();
   const { articles } = data;
@@ -64,5 +59,5 @@ export const setArticle = (q: string) => async (dispatch: (arg0: { type: string;
     title: articles[0].title,
     url: articles[0].url,
   };
-  dispatch({ type: SET_ARTICLE, payload: article });
+  dispatch({ type: ActionTypes.SET_ARTICLE, payload: article });
 };
