@@ -1,0 +1,14 @@
+@import "../../styles.scss";
+.about__wrapper {
+  min-height: calc(100vh - 71px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.text__wrapper {
+  width: 350px;
+}
+.about__text {
+  margin: 5px;
+}
