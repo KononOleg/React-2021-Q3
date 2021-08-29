@@ -1,0 +1,13 @@
+@import "../../styles.scss";
+.no-data__wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 142px);
+}
+
+.no-data__text {
+  font-family: $Roboto;
+  font-size: 40px;
+  font-weight: 400;
+}
